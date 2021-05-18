@@ -5,6 +5,7 @@ var cors = require('cors');
 const app = express()
 const port = 3000
 var booksData = require('./books.json');
+var usersData = require('./users.json');
 app.use(cors());
 var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({
@@ -20,6 +21,19 @@ app.get('/books', (req, res) => {
   res.json(booksData);
 });
 
+app.post('/login', (req, res) => {
+  let userInfo = req.body;
+  for(let i=0;i<usersData.length;i++)
+  {
+    if(usersData[i].username===userInfo.username && usersData[i].password===userInfo.password)
+    {
+      res.json("SUCCESS");
+    }
+  }
+  res.json("ERROR");
+  //res.json(booksData);
+});
+
 app.put('/books', (req, res) => {
   let dataToInsert = req.body;
   fs.readFile('books.json', function (err, data) {
@@ -31,6 +45,37 @@ app.put('/books', (req, res) => {
 })
   booksData[booksData.length] = req.body;
   res.json('Book saved!');
+});
+
+app.put('/newUser', (req, res) => {
+  let flag=false;
+  let userToInsert = req.body;
+  fs.readFile('users.json', function (err, data) {
+    var json = JSON.parse(data)
+    for(let i=0;i<json.length;i++)
+    {
+      if(userToInsert.username===json[i].username)
+      {
+        res.json("EXISTING USER");
+        flag=true;
+        break;
+      }
+    }
+    // dataToInsert["id"]=booksData.length-1;
+    if(!flag)
+    {
+      json.push(userToInsert)
+      // console.log(json);
+      fs.writeFileSync('users.json',JSON.stringify(json));
+    }
+    
+})
+  if(!flag)
+  {
+    usersData[usersData.length] = req.body;
+  res.json('User saved!');
+  }
+  
 });
 
 app.delete('/books/:index',(req, res) => {

@@ -4,6 +4,7 @@ var app = new Vue({
     seen: true,
     books: [],
     booksService: null,
+    userService: null,
   },
   mounted: function () {
     this.loadBooks();
@@ -32,6 +33,20 @@ var app = new Vue({
         booksService.get().then(response =>(this.books=response.data));
       });
       location.reload();
+    },
+    login: function (username,password) {
+      userService = userFunc();
+      var u = {username:username,password:password};
+      userService.login(u).then(response => {
+        console.log(response.data);
+      })
+    },
+    newAccount: function (username,password) {
+      userService = userFunc();
+      var u = {username:username,password:password};
+      userService.newAccount(u).then(response => {
+        console.log(response.data);
+      })
     },
   },
 });
