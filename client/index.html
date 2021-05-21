@@ -1,13 +1,29 @@
 <html>
-    <head>
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    </head>
-    <body>
-        
-        <div id="app">
-            <span v-if="seen">Now you see me</span>
-        </div>
-            
-        <script src="index.js"></script>
-    </body>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript" src="libs/vue/vue.js"></script>
+    <script type="text/javascript" src="libs/axios/axios.js"></script>
+    <script type="text/javascript" src="books.js"></script>
+    <script type="text/javascript" src="userFunc.js"></script>
+  </head>
+
+  
+  
+
+    <div id="app">
+      <ul class="book-list">
+        <li v-for="book in books" :key="book.title">
+          <div class="book-row">
+            <div class="book-id"><b>{{ book.id }}</b></div>
+            <div class="book-title"><b>{{ book.title }}</b></div>
+            <div class="book-author"><i>{{ book.author }}</i></div>
+            <div class="book-link"><i>{{ book.imageLink }}</i></div>
+            <div class="book-description"><i>{{ book.description }}</i></div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
 </html>
