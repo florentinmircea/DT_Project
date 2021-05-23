@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "axios": "^0.21.1",
-    "http-server": "^0.12.3"
+    "http-server": "^0.12.3",
+    "jquery": "^3.6.0",
+    "toastr": "^2.1.4"
   }
 }
