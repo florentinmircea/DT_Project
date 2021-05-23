@@ -114,7 +114,7 @@ app.put('/booksupdate', (req, res) => {
     fs.writeFileSync('books.json',JSON.stringify(json));
 })
   booksData[booksData.length] = req.body;
-  res.json('Book saved!');
+  res.json('Book updated!');
 });
 
 app.listen(port, () => {

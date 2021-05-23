@@ -1,0 +1,223 @@
+body {
+  background-color: antiquewhite;
+}
+
+#login {
+  background-color: darkcyan;
+  width: 500px;
+  margin: auto;
+  min-height: 40%;
+  border-radius: 8px;
+}
+
+#register {
+  background-color: darkcyan;
+  width: 500px;
+  margin: auto;
+  min-height: 30%;
+  border-radius: 8px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+h2 {
+  font-family: "Archivo Black", sans-serif;
+  color: #e0dada;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+  font-size: xx-large;
+}
+
+#username-input,
+#password-input,
+#newUsername-input,
+#newPassword-input {
+  height: 35px;
+  padding: 5px 5px;
+  margin: 10px 0px;
+  background-color: #e0dada;
+  border: none;
+}
+
+#register-button,
+#login-button {
+  height: 40px;
+  width: 100px;
+  padding: 5px 5px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: bold;
+  background-color: #be5256;
+  border: none;
+  color: #e0dada;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#register-button:hover,
+#login-button:hover {
+  background-color: #711f1b;
+}
+
+h1 {
+  color: darkcyan;
+  font-family: "Book Antiqua";
+  font-size: 300%;
+  margin-top: 20px;
+  text-align: center;
+}
+
+a {
+  padding: 10px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #e0dada;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  font-family: "Archivo Black", sans-serif;
+}
+
+a:hover {
+  color: #711f1b;
+}
+
+.book-list {
+  list-style-type: none;
+}
+
+.book-row {
+  /*column-count: 2;*/
+  /*column-rule-style: solid;*/
+  /*column-rule-width: 1px;*/
+  /*column-rule-color: #711f1b;*/
+  margin: 10px auto;
+  background-color: cadetblue;
+  padding: 10px;
+  text-align: center;
+  text-justify: distribute;
+  width: 1000px;
+  height: auto;
+}
+
+.book-row:hover {
+  background-color: darkgrey;
+}
+
+.book-title {
+  width: 500px;
+  display: inline-block;
+  font-size: large;
+  font-family: "Book Antiqua";
+}
+
+/*.book-image {*/
+/*    width: 230px;*/
+/*    height: 350px;*/
+/*}*/
+
+/* Style the buttons that are used to open and close the accordion panel */
+.accordion {
+  background-color: darkcyan;
+  color: #e0dada;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  font-size: 20px;
+  font-family: "Book Antiqua";
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active,
+.accordion:hover {
+  background-color: #be5256;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+.panel {
+  padding: 0 18px;
+  background-color: antiquewhite;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+  text-align: center;
+}
+
+.panel1 {
+  padding: 0 18px;
+  background-color: antiquewhite;
+  max-height: 0;
+  overflow: auto;
+  transition: max-height 0.2s ease-out;
+  text-align: center;
+}
+
+.accordion:after {
+  content: "\02795"; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: #777;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+#title,
+#author,
+#imageLink {
+  height: 35px;
+  padding: 5px 5px;
+  margin: 10px 0px;
+  background-color: #e0dada;
+  border: none;
+  width: 60%;
+}
+
+#description {
+  height: 100px;
+  padding: 5px 5px;
+  margin: 10px 0px;
+  background-color: #e0dada;
+  border: none;
+  width: 60%;
+}
+
+label {
+  font-family: "Book Antiqua";
+  font-weight: bold;
+  color: darkcyan;
+  font-size: 20px;
+}
+
+#insert-button,
+#update-button,
+#delete-button {
+  height: 40px;
+  width: 150px;
+  padding: 5px 5px;
+  margin-left: 30px;
+  margin-right: auto;
+  font-weight: bold;
+  background-color: #be5256;
+  border: none;
+  color: #e0dada;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 8px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#insert-button:hover {
+  background-color: #711f1b;
+}

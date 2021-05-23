@@ -1,29 +1,104 @@
 <html>
   <head>
+    <title>Library Application</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="node_modules/toastr/build/toastr.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script type="text/javascript" src="libs/vue/vue.js"></script>
     <script type="text/javascript" src="libs/axios/axios.js"></script>
     <script type="text/javascript" src="books.js"></script>
     <script type="text/javascript" src="userFunc.js"></script>
+    <script
+      type="text/javascript"
+      src="node_modules/jquery/dist/jquery.js"
+    ></script>
+    <script type="text/javascript" src="node_modules/toastr/toastr.js"></script>
   </head>
-
-  
-  
-
+  <body>
     <div id="app">
-      <ul class="book-list">
-        <li v-for="book in books" :key="book.title">
-          <div class="book-row">
-            <div class="book-id"><b>{{ book.id }}</b></div>
-            <div class="book-title"><b>{{ book.title }}</b></div>
-            <div class="book-author"><i>{{ book.author }}</i></div>
-            <div class="book-link"><i>{{ book.imageLink }}</i></div>
-            <div class="book-description"><i>{{ book.description }}</i></div>
-          </div>
-        </li>
-      </ul>
+      <h1>Library Books</h1>
+      <div id="login" v-if="oldUser">
+        <form v-on:submit.prevent>
+          <h2>Login</h2>
+          <input type="text" id="username-input" placeholder="Username" />
+          <input type="password" id="password-input" placeholder="Password" />
+          <button
+            id="login-button"
+            v-on:click="login(); (loggedIn == 'SUCCESS') && (logged=!logged) &&(oldUser=null) "
+          >
+            Sign in
+          </button>
+          <a v-on:click.stop.prevent="oldUser=!oldUser">Register</a>
+        </form>
+      </div>
+      <div id="register" v-else-if="oldUser == false">
+        <form v-on:submit.prevent>
+          <h2>Register</h2>
+          <input type="text" id="newUsername-input" placeholder="Username" />
+          <input
+            type="password"
+            id="newPassword-input"
+            placeholder="Password"
+          />
+          <button
+            id="register-button"
+            v-on:click="newAccount(); oldUser=!oldUser;"
+          >
+            Sign up
+          </button>
+        </form>
+      </div>
+      <!--        lista nu am reusit nici cum sa o aranjez frumos pe coloane asa ca le-am scos de tot, da asa mi se pare ca o carte ocupa cam mult spatiu idk partea buna e ca insert-ul, update-ul si delete-ul merg:)))-->
+      <div v-if="logged == true">
+        <button class="accordion active" v-on:click="accordion()">
+          View books
+        </button>
+        <div class="panel1" style="max-height: 100%">
+          <ul class="book-list">
+            <li v-for="book in books" :key="book.title">
+              <div class="book-row">
+                <div class="book-image">
+                  <img :src="book.imageLink" alt="Book image" />
+                </div>
+                <br />
+                <div class="book-title" contenteditable="true">
+                  <b>{{ book.title }}</b>
+                </div>
+                <div class="book-author" contenteditable="true">
+                  <i>{{ book.author }}</i>
+                </div>
+                <br />
+                <div class="book-description" contenteditable="true">
+                  <i>{{ book.description }}</i>
+                </div>
+                <br />
+                <button id="update-button" v-on:click="update(book.id)">
+                  Update book
+                </button>
+                <button id="delete-button" v-on:click="remove(book.id)">
+                  Delete book
+                </button>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <button class="accordion" v-on:click="accordion()">Insert</button>
+        <div class="panel">
+          <br />
+          <label for="title">Title</label><br />
+          <input type="text" id="title" /><br />
+          <label for="author">Author</label><br />
+          <input type="text" id="author" /><br />
+          <label for="imageLink">Image link</label><br />
+          <input type="url" id="imageLink" /><br />
+          <label for="description">Description</label><br />
+          <textarea rows="5" cols="60" id="description"></textarea><br />
+          <button type="button" id="insert-button" v-on:click="save()">
+            Insert book</button
+          ><br /><br />
+        </div>
+      </div>
     </div>
-
     <script src="index.js"></script>
   </body>
 </html>
