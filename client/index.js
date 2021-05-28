@@ -8,6 +8,7 @@ var app = new Vue({
     loggedIn: "",
     logged: false,
     oldUser: true,
+    aux: Number(0),
   },
   mounted: function () {
     this.loadBooks();
@@ -33,7 +34,6 @@ var app = new Vue({
       imageLink.value = "";
       description.value = "";
       booksService.save(b).then((response) => {
-        //toastr.options.positionClass = 'toast-bottom-center';
         toastr.options.timeOut = 2000;
         toastr.success(response.data);
         booksService.get().then((response) => (this.books = response.data));
@@ -53,7 +53,6 @@ var app = new Vue({
         document.getElementsByClassName("book-title")[index].textContent;
       var author =
         document.getElementsByClassName("book-author")[index].textContent;
-      // fara modificare imageLink
       var description =
         document.getElementsByClassName("book-description")[index].textContent;
       var b = {
@@ -76,14 +75,14 @@ var app = new Vue({
       var u = { username: username, password: password };
       userService.login(u).then((response) => {
         this.loggedIn = response.data;
+        this.aux++;
         if (response.data === "SUCCESS") {
-          toastr.success(response.data);
-          console.log(response.data);
+          if (this.aux === Number(2)) {
+            toastr.success(response.data);
+          }
         } else {
           toastr.error(response.data);
-          console.log(response.data);
         }
-        console.log(response.data);
       });
     },
     newAccount: function () {
@@ -94,7 +93,6 @@ var app = new Vue({
       userService.newAccount(u).then((response) => {
         toastr.options.timeOut = 2000;
         toastr.info(response.data);
-        console.log(response.data);
       });
     },
     accordion: function () {
